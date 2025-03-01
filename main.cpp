@@ -315,8 +315,6 @@ void collisionChecker() { //Collision handler function
     float top_bound = 3.75f - (ball_height / 2.0f);
     float bottom_bound = -top_bound;
 
-    int ballsRemaining = activeBalls; // Track how many balls are still in play
-
     //Ball 1 collision
     if (activeBalls >= 1)
     {
@@ -330,14 +328,14 @@ void collisionChecker() { //Collision handler function
 
         if (ball1_pos.y >= top_bound || ball1_pos.y <= bottom_bound) ball1_movement.y = -ball1_movement.y;
 
-        // Check if ball 1 is out of bounds
+        //Check if ball 1 is out of bounds
         if (ball1_pos.x <= left_bound) {
-            player2_score++; // Player 2 scores
-            activeBalls--;   // Reduce number of active balls
+            player2_score++; //Player 2 scores
+            activeBalls--;   
         }
         else if (ball1_pos.x >= right_bound) {
-            player1_score++; // Player 1 scores
-            activeBalls--;   // Reduce number of active balls
+            player1_score++; //Player 1 scores
+            activeBalls--;   
         }
     }
 
@@ -387,7 +385,7 @@ void collisionChecker() { //Collision handler function
         }
     }
 
-    // **Check if a player has won**
+	//Checks if a player has won
     if (ballCount == 1)
     {
         if (player1_score == 1)
@@ -438,7 +436,7 @@ void collisionChecker() { //Collision handler function
         }
     }
 
-    // **If all balls are gone and game isn't over, reset for next round**
+    //Reset balls for next round of game
     if (activeBalls == 0 && !gameOver) {
         activeBalls = ballCount;
 
@@ -448,7 +446,6 @@ void collisionChecker() { //Collision handler function
         ball1_movement = glm::vec3(-1.0f, 0.5f, 0.0f);
         ball2_movement = glm::vec3(1.0f, -0.5f, 0.0f);
         ball3_movement = glm::vec3(0.5f, 0.8f, 0.0f);
-        activeBalls = 3; // Reset balls for next round
     }
 }
 
